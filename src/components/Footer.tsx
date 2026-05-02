@@ -16,7 +16,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative bg-[#0C0C0C] text-white py-20 px-6 sm:px-10 overflow-hidden">
+    <footer className="relative text-white py-20 px-6 sm:px-10 overflow-hidden" style={{ backgroundColor: '#0C0C0C', isolation: 'isolate' }}>
       <VideoBackground 
         src="/footer.mp4" 
         overlayOpacity={0.7}

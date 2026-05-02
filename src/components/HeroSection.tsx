@@ -12,7 +12,7 @@ export default function HeroSection() {
         src="/header.mp4" 
         overlayOpacity={0.6}
       />
-      <div className="flex flex-col flex-1 px-5 sm:px-8 md:px-10 relative z-0">
+      <div className="flex flex-col flex-1 px-5 sm:px-8 md:px-10 relative z-10">
         <FadeIn delay={0} y={-20}>
           <Navbar />
         </FadeIn>

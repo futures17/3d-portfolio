@@ -1,59 +1,60 @@
-import { useEffect, useRef } from 'react';
-import Hls from 'hls.js';
-
 interface VideoBackgroundProps {
   src: string;
-  className?: string;
   overlayColor?: string;
   overlayOpacity?: number;
+  className?: string;
 }
 
-const VideoBackground = ({ 
-  src, 
-  className = '', 
-  overlayColor = '#000000', 
-  overlayOpacity = 0.5 
+const VideoBackground = ({
+  src,
+  overlayColor = '#000000',
+  overlayOpacity = 0.5,
+  className = '',
 }: VideoBackgroundProps) => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    if (src.includes('.m3u8')) {
-      if (Hls.isSupported()) {
-        const hls = new Hls();
-        hls.loadSource(src);
-        hls.attachMedia(video);
-        hls.on(Hls.Events.MANIFEST_PARSED, () => {
-          video.play().catch(e => console.log("Video play error:", e));
-        });
-      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-        video.src = src;
-        video.addEventListener('loadedmetadata', () => {
-          video.play().catch(e => console.log("Video play error:", e));
-        });
-      }
-    } else {
-      video.src = src;
-      video.load(); // Ensure local files are loaded
-      video.play().catch(e => console.log("Video play error:", e));
-    }
-  }, [src]);
-
   return (
-    <div className={`absolute inset-0 w-full h-full overflow-hidden -z-10 ${className}`}>
+    <div
+      className={className}
+      style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        width: '100%',
+        height: '100%',
+        overflow: 'hidden',
+        zIndex: 0,
+      }}
+    >
+      {/* Video layer */}
       <video
-        ref={videoRef}
+        src={src}
+        autoPlay
         muted
         loop
-        autoPlay
         playsInline
-        className="w-full h-full object-cover"
+        style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          minWidth: '100%',
+          minHeight: '100%',
+          width: 'auto',
+          height: 'auto',
+          objectFit: 'cover',
+          zIndex: 0,
+        }}
       />
-      <div 
-        className="absolute inset-0" 
-        style={{ backgroundColor: overlayColor, opacity: overlayOpacity }}
+      {/* Dark overlay layer */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundColor: overlayColor,
+          opacity: overlayOpacity,
+          zIndex: 1,
+        }}
       />
     </div>
   );
