@@ -36,6 +36,7 @@ const VideoBackground = ({
       }
     } else {
       video.src = src;
+      video.load(); // Ensure local files are loaded
       video.play().catch(e => console.log("Video play error:", e));
     }
   }, [src]);
@@ -46,6 +47,7 @@ const VideoBackground = ({
         ref={videoRef}
         muted
         loop
+        autoPlay
         playsInline
         className="w-full h-full object-cover"
       />

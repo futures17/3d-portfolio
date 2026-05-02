@@ -9,7 +9,7 @@ export default function HeroSection() {
   return (
     <section className="h-screen flex flex-col overflow-y-visible relative" style={{ overflowX: 'clip' }}>
       <VideoBackground 
-        src="https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8" 
+        src="/header.mp4" 
         overlayOpacity={0.6}
       />
       <div className="flex flex-col flex-1 px-5 sm:px-8 md:px-10 relative z-0">

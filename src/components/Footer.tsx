@@ -18,7 +18,7 @@ export default function Footer() {
   return (
     <footer className="relative bg-[#0C0C0C] text-white py-20 px-6 sm:px-10 overflow-hidden">
       <VideoBackground 
-        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260411_104032_69319010-2458-492b-b04d-b40a5dfa4482.mp4" 
+        src="/footer.mp4" 
         overlayOpacity={0.7}
       />
       <div className="max-w-7xl mx-auto relative z-10">
